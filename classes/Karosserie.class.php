@@ -7,7 +7,6 @@ include_once ( 'DirektSuche.class.php' );
 include_once ( 'EuroCarSegment.class.php' );
 include_once ( 'FilterArray.class.php' );
 include_once ( 'Formular.class.php' );
-include_once ( 'MaterialMix.class.php' );
 include_once ( 'OEMbrand.class.php' );
 include_once ( 'Process.class.php' );
 include_once ( 'Weights.class.php' );
@@ -23,7 +22,6 @@ class Karosserie {
 		new CarModel();
 		new Dimensions();
 		new EuroCarSegment();
-		new MaterialMix();
 		new OEMbrand();
 		new Process();
 		new Weights();
