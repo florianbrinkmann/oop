@@ -1,0 +1,5 @@
+- Datenbank-Klasse macht generische Anfrage
+- Aus den Karosserie-/Dimensions/etc.-Klassen wird eine Anfrage an die Datenbank-Klasse gestartet und nach Rückgabe des
+Ergebnis-Arrays diese gefiltert, sodass nur die „Spalten“ übrig bleiben, die gebraucht werden
+
+- Das Karosserie-Objekt muss die Teil-Objekte erstellen, da es keine Karosserie ohne CarModel et cetera geben kann
