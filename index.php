@@ -25,7 +25,7 @@ $inputArgs = [
 	]
 ];
 
-$formular = new SuchFormular();
+$formular = new Formular();
 
 $formular->form( 'post', 'index.php', $inputArgs, 'Suchen' );
 

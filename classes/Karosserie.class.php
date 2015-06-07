@@ -6,10 +6,10 @@ include_once ( 'Dimensions.class.php' );
 include_once ( 'DirektSuche.class.php' );
 include_once ( 'EuroCarSegment.class.php' );
 include_once ( 'FilterArray.class.php' );
+include_once ( 'Formular.class.php' );
 include_once ( 'MaterialMix.class.php' );
 include_once ( 'OEMbrand.class.php' );
 include_once ( 'Process.class.php' );
-include_once ( 'SuchFormular.class.php' );
 include_once ( 'Weights.class.php' );
 
 class Karosserie {
