@@ -11,12 +11,8 @@ class Weights {
 	var $frontEndModules;
 	var $totalWeight;
 
-	function getValues() {
-		$db      = new Datenbank();
-		$dbh     = $db->connect();
-		$result  = $db->select( $dbh );
-		$allowed = [
-			'karosserieID',
+	function getValues( $wantedValues ) {
+		$objectValues = [
 			'frontDoors',
 			'rearDoors',
 			'hood',
@@ -27,9 +23,18 @@ class Weights {
 			'frontEndModules',
 			'totalWeight'
 		];
+		$restArray    = array_intersect( $wantedValues, $objectValues );
+		if ( $restArray ) {
+			foreach ( $restArray as $key => $value ) {
+				unset( $wantedValues[ $key ] );
+			}
+		}
+		$db      = new Datenbank();
+		$dbh     = $db->connect();
+		$result  = $db->select( $dbh );
 		$values  = new FilterArray();
-		$values  = $values->filter( $result, $allowed );
+		$values  = $values->filter( $result, $restArray );
 
-		return $values;
+		return [ 'values' => $values, 'wantedValues' => $wantedValues];
 	}
 }

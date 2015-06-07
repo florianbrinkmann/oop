@@ -2,13 +2,19 @@
 class CarModel {
 	var $modelID;
 	var $carModel;
-	function getValues() {
+	function getValues( $wantedValues ) {
+		$objectValues = [ 'carModel' ];
+		$restArray    = array_intersect( $wantedValues, $objectValues );
+		if ( $restArray ) {
+			foreach ( $restArray as $key => $value ) {
+				unset( $wantedValues[ $key ] );
+			}
+		}
 		$db = new Datenbank();
 		$dbh = $db->connect();
 		$result = $db->select( $dbh );
-		$allowed = [ 'modelID', 'carModel' ];
 		$values = new FilterArray();
-		$values = $values->filter( $result, $allowed );
-		return $values;
+		$values = $values->filter( $result, $restArray );
+		return [ 'values' => $values, 'wantedValues' => $wantedValues];
 	}
 }

@@ -10,13 +10,19 @@ class Formular {
 	<?php }
 
 	function input( $inputArgs ) {
-		foreach ( $inputArgs as $input ) { ?>
-			<label for="<?php echo $input['id'] ?>"><?php echo $input['label'] ?></label>
+		foreach ( $inputArgs as $input ) {
+			if ( $input['label'] != '' ) { ?>
+				<label for="<?php echo $input['id'] ?>"><?php echo $input['label'] ?></label>
+			<?php } ?>
 			<input type="<?php echo $input['type'] ?>" id="<?php echo $input['id'] ?>" name="<?php echo $input['id'] ?>"
 			       placeholder="<?php echo $input['placeholder'] ?>"
-			       value="<?php if ( isset( $_POST[ $input['id'] ] ) ) {
+			       value="<?php if ( $input['value'] != '' && ! isset( $_POST[ $input['id'] ] ) ) {
+				       echo $input['value'];
+			       } elseif ( isset( $_POST[ $input['id'] ] ) ) {
 				       echo $_POST[ $input['id'] ];
-			       } ?>">
+			       } ?>"<?php if ( $input['readonly'] != '' ) {
+				echo "disabled";
+			} ?>>
 		<?php
 		}
 	}

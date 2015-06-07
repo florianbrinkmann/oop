@@ -13,12 +13,8 @@ class Process {
 	var $numberOfPartsInWeightClass1kgTo5kg;
 	var $numberOfPartsInWeightClassMoreThan5kg;
 
-	function getValues() {
-		$db      = new Datenbank();
-		$dbh     = $db->connect();
-		$result  = $db->select( $dbh );
-		$allowed = [
-			'karosserieID',
+	function getValues( $wantedValues ) {
+		$objectValues = [
 			'process',
 			'reTooling',
 			'degreeOfMechanisation',
@@ -31,9 +27,18 @@ class Process {
 			'numberOfPartsInWeightClass1kgTo5kg',
 			'numberOfPartsInWeightClassMoreThan5kg'
 		];
+		$restArray    = array_intersect( $wantedValues, $objectValues );
+		if ( $restArray ) {
+			foreach ( $restArray as $key => $value ) {
+				unset( $wantedValues[ $key ] );
+			}
+		}
+		$db      = new Datenbank();
+		$dbh     = $db->connect();
+		$result  = $db->select( $dbh );
 		$values  = new FilterArray();
-		$values  = $values->filter( $result, $allowed );
+		$values  = $values->filter( $result, $restArray );
 
-		return $values;
+		return [ 'values' => $values, 'wantedValues' => $wantedValues];
 	}
 }
