@@ -1,3 +1,8 @@
+<!DOCTYPE hmtl>
+<head>
+	<meta charset="UTF-8"
+</head>
+<html>
 <?php
 require_once ( 'classes/Karosserie.class.php' );
 
@@ -36,4 +41,5 @@ if ( ( isset( $_POST[ 'oembrand_oemBrand' ] ) || isset( $_POST[ 'carmodel_carMod
 	$karosserien = $karosserie->getValues( $wantedValues );
 	$display = new Anzeige();
 	$display->overview( $karosserien );
-}
+} ?>
+</html>
