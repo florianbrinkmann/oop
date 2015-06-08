@@ -27,9 +27,16 @@ class Karosserie {
 		new Weights();
 	}
 
-	function getValues( $wantedValues ) {
+	function getObjectValues() {
 		$objectValues = [ 'id', 'modelYear', 'brandID', 'modelID', 'shortEuroCarSegment' ];
-		$restArray    = array_intersect( $wantedValues, $objectValues );
+
+		return $objectValues;
+	}
+
+	function getValues( $wantedValues ) {
+		$originalWantedValues = $wantedValues;
+		$objectValues         = $this->getObjectValues();
+		$restArray            = array_intersect( $wantedValues, $objectValues );
 		if ( $restArray ) {
 			foreach ( $restArray as $key => $value ) {
 				unset( $wantedValues[ $key ] );
@@ -41,47 +48,114 @@ class Karosserie {
 		$values = new FilterArray();
 		$values = $values->filter( $result, $restArray );
 		if ( $wantedValues ) {
-			$carModel = new CarModel();
-			$carModel = $carModel->getValues( $wantedValues );
-			$carModelValues = $carModel[ 'values' ];
-			$wantedValues = $carModel[ 'wantedValues' ];
-			$values   = array_merge_recursive( $carModelValues, $values );
+			$carModel             = new CarModel();
+			$carModelObjectValues = $carModel->getObjectValues();
+			$intersect            = new FilterArray();
+			$restArray            = $intersect->intersect( $wantedValues, $carModelObjectValues );
+			if ( $restArray != $wantedValues && ! empty ( $restArray ) ) {
+
+				$carModel       = $carModel->getValues( $wantedValues, $restArray );
+				$carModelValues = $carModel['values'];
+				$wantedValues   = $carModel['wantedValues'];
+				$values         = array_merge_recursive( $carModelValues, $values );
+			}
+
 		}
+
 		if ( $wantedValues ) {
-			$oemBrand = new OEMbrand();
-			$oemBrand = $oemBrand->getValues( $wantedValues );
-			$oemBrandValues = $oemBrand[ 'values' ];
-			$wantedValues = $oemBrand[ 'wantedValues' ];
-			$values   = array_merge_recursive( $oemBrandValues, $values );
+			$oemBrand             = new OEMbrand();
+			$oemBrandObjectValues = $oemBrand->getObjectValues();
+			$intersect            = new FilterArray();
+			$restArray            = $intersect->intersect( $wantedValues, $oemBrandObjectValues );
+			if ( $restArray != $wantedValues && ! empty ( $restArray ) ) {
+
+				$oemBrand       = $oemBrand->getValues( $wantedValues, $restArray );
+				$oemBrandValues = $oemBrand['values'];
+				$wantedValues   = $oemBrand['wantedValues'];
+				$values         = array_merge_recursive( $oemBrandValues, $values );
+			}
+
 		}
+
 		if ( $wantedValues ) {
-			$euroCarSegment = new EuroCarSegment();
-			$euroCarSegment = $euroCarSegment->getValues( $wantedValues );
-			$euroCarSegmentValues = $euroCarSegment[ 'values' ];
-			$wantedValues = $euroCarSegment[ 'wantedValues' ];
-			$values   = array_merge_recursive( $euroCarSegmentValues, $values );
+			$euroCarSegment             = new EuroCarSegment();
+			$euroCarSegmentObjectValues = $euroCarSegment->getObjectValues();
+			$intersect                  = new FilterArray();
+			$restArray                  = $intersect->intersect( $wantedValues, $euroCarSegmentObjectValues );
+			if ( $restArray != $wantedValues && ! empty ( $restArray ) ) {
+
+				$euroCarSegment       = $euroCarSegment->getValues( $wantedValues, $restArray );
+				$euroCarSegmentValues = $euroCarSegment['values'];
+				$wantedValues         = $euroCarSegment['wantedValues'];
+				$values               = array_merge_recursive( $euroCarSegmentValues, $values );
+			}
+
 		}
+
 		if ( $wantedValues ) {
-			$dimensions = new Dimensions();
-			$dimensions = $dimensions->getValues( $wantedValues );
-			$dimensionsValues = $dimensions[ 'values' ];
-			$wantedValues = $dimensions[ 'wantedValues' ];
-			$values   = array_merge_recursive( $dimensionsValues, $values );
+			$dimensions             = new Dimensions();
+			$dimensionsObjectValues = $dimensions->getObjectValues();
+			$intersect              = new FilterArray();
+			$restArray              = $intersect->intersect( $wantedValues, $dimensionsObjectValues );
+			if ( $restArray != $wantedValues && ! empty ( $restArray ) ) {
+
+				$dimensions       = $dimensions->getValues( $wantedValues, $restArray );
+				$dimensionsValues = $dimensions['values'];
+				$wantedValues     = $dimensions['wantedValues'];
+				$values           = array_merge_recursive( $dimensionsValues, $values );
+			}
+
 		}
+
 		if ( $wantedValues ) {
-			$weights = new Weights();
-			$weights = $weights->getValues( $wantedValues );
-			$weightsValues = $weights[ 'values' ];
-			$wantedValues = $weights[ 'wantedValues' ];
-			$values   = array_merge_recursive( $weightsValues, $values );
+			$weights             = new Weights();
+			$weightsObjectValues = $weights->getObjectValues();
+			$intersect           = new FilterArray();
+			$restArray           = $intersect->intersect( $wantedValues, $weightsObjectValues );
+			if ( $restArray != $wantedValues && ! empty ( $restArray ) ) {
+
+				$weights       = $weights->getValues( $wantedValues, $restArray );
+				$weightsValues = $weights['values'];
+				$wantedValues  = $weights['wantedValues'];
+				$values        = array_merge_recursive( $weightsValues, $values );
+			}
+
 		}
+
 		if ( $wantedValues ) {
-			$process = new Process();
-			$process = $process->getValues( $wantedValues );
-			$processValues = $process[ 'values' ];
-			$values   = array_merge_recursive( $processValues, $values );
+			$process             = new Process();
+			$processObjectValues = $process->getObjectValues();
+			$intersect           = new FilterArray();
+			$restArray           = $intersect->intersect( $wantedValues, $processObjectValues );
+			if ( $restArray != $wantedValues && ! empty ( $restArray ) ) {
+
+				$process       = $process->getValues( $wantedValues, $restArray );
+				$processValues = $process['values'];
+				$values        = array_merge_recursive( $processValues, $values );
+			}
+
 		}
+
+		$counter = 0;
+		foreach ( $values as $value ) {
+			$value                        = $this->sortArrayByArray( $value, $originalWantedValues );
+			$values["karosserie$counter"] = $value;
+			$counter ++;
+		}
+
 		return $values;
+	}
+
+	function sortArrayByArray( Array $array, $originalWantedValues ) {
+		$ordered = array();
+		foreach ( $originalWantedValues as $key ) {
+			if ( array_key_exists( $key, $array ) ) {
+				$ordered[ $key ] = $array[ $key ];
+				unset( $array[ $key ] );
+			}
+		}
+
+		return $ordered + $array;
 	}
 }
 

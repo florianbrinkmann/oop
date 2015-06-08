@@ -3,14 +3,13 @@ class OEMbrand {
 	var $brandID;
 	var $oemBrand;
 
-	function getValues( $wantedValues ) {
+	function getObjectValues() {
 		$objectValues = [ 'oemBrand' ];
-		$restArray    = array_intersect( $wantedValues, $objectValues );
-		if ( $restArray ) {
-			foreach ( $restArray as $key => $value ) {
-				unset( $wantedValues[ $key ] );
-			}
-		}
+
+		return $objectValues;
+	}
+
+	function getValues( $wantedValues, $restArray ) {
 		$db     = new Datenbank();
 		$dbh    = $db->connect();
 		$result = $db->select( $dbh );
@@ -18,6 +17,6 @@ class OEMbrand {
 		$values = new FilterArray();
 		$values = $values->filter( $result, $restArray );
 
-		return [ 'values' => $values, 'wantedValues' => $wantedValues];
+		return [ 'values' => $values, 'wantedValues' => $wantedValues ];
 	}
 }

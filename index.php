@@ -8,7 +8,6 @@ $inputArgs = [
 		'type' => 'text',
 		'placeholder' => 'Hersteller',
 		'value' => '',
-		'readonly' => ''
 	],
 	[
 		'label' => 'Modell',
@@ -16,7 +15,6 @@ $inputArgs = [
 		'type' => 'text',
 		'placeholder' => 'Modell',
 		'value' => '',
-		'readonly' => ''
 	],
 	[
 		'label' => 'Modelljahr',
@@ -24,7 +22,6 @@ $inputArgs = [
 		'type' => 'text',
 		'placeholder' => 'Modelljahr',
 		'value' => '',
-		'readonly' => ''
 	]
 ];
 
