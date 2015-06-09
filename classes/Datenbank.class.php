@@ -2,7 +2,7 @@
 class Datenbank {
 	function connect() {
 		try {
-			$dbh = new PDO( 'mysql:host=localhost;dbname=mydb', 'root', '' );
+			$dbh = new PDO( 'mysql:host=localhost;dbname=mydb;charset=utf8', 'root', '' );
 
 			return $dbh;
 		} catch ( PDOException $e ) {

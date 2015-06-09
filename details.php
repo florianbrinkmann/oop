@@ -1,8 +1,8 @@
-<!DOCTYPE hmtl>
+<!DOCTYPE html>
 <head>
-	<meta charset="UTF-8"
+	<meta charset="UTF-8">
 </head>
-<html>
+<body>
 <?php
 require_once ( 'classes/Karosserie.class.php' );
 
@@ -47,4 +47,5 @@ if ( isset( $_POST ) && ! empty( $_POST ) ) {
 	$display->detailView( $karosserien );
 
 } ?>
+</body>
 </html>

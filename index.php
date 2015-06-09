@@ -1,8 +1,8 @@
-<!DOCTYPE hmtl>
+<!DOCTYPE html>
 <head>
-	<meta charset="UTF-8"
+	<meta charset="UTF-8">
 </head>
-<html>
+<body>
 <?php
 require_once ( 'classes/Karosserie.class.php' );
 
@@ -42,4 +42,5 @@ if ( ( isset( $_POST[ 'oembrand_oemBrand' ] ) || isset( $_POST[ 'carmodel_carMod
 	$display = new Anzeige();
 	$display->overview( $karosserien );
 } ?>
+</body>
 </html>
