@@ -9,4 +9,15 @@ class FilterArray {
 
 		return ( $tmp );
 	}
+
+	function intersect( $wantedValues, $objectValues ) {
+		$restArray = array_intersect( $wantedValues, $objectValues );
+		if ( $restArray ) {
+			foreach ( $restArray as $key => $value ) {
+				unset( $wantedValues[ $key ] );
+			}
+		}
+
+		return $restArray;
+	}
 }

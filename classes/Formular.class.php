@@ -20,9 +20,7 @@ class Formular {
 				       echo $input['value'];
 			       } elseif ( isset( $_POST[ $input['id'] ] ) ) {
 				       echo $_POST[ $input['id'] ];
-			       } ?>"<?php if ( $input['readonly'] != '' ) {
-				echo "disabled";
-			} ?>>
+			       } ?>">
 		<?php
 		}
 	}

@@ -1,25 +1,31 @@
 <?php
 class Anzeige {
-	function detailView( $values ) {
-
+	function detailView( $karosserien ) {
+		foreach ( $karosserien as $karosserie ) {
+			echo "<ul>";
+			foreach ( $karosserie as $key => $value ) {
+				echo "<li>".$key.": ".$value."</li>";
+			}
+			echo "</ul>";
+		}
 	}
 
 	function overview( $karosserien ) {
 		echo "<br><br>";
 		foreach ( $karosserien as $karosserie ) {
+			$inputArgs = [];
 			foreach ( $karosserie as $key => $value ) {
 				$inputArgs[] = [
-					'label'       => '',
+					'label'       => $value,
 					'id'          => $key,
-					'type'        => 'text',
+					'type'        => 'hidden',
 					'placeholder' => '',
 					'value'       => $value,
-					'readonly'    => 'true'
 				];
 			}
+			$formular = new Formular();
+			$formular->form( 'post', 'details.php', $inputArgs, 'Details' );
 		}
-		$formular = new Formular();
-		$formular->form( 'post', 'details.php', $inputArgs, 'Details' );
 
 	}
 }
