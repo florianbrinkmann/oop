@@ -1,19 +1,13 @@
 <?php
 include_once ( 'Anzeige.class.php' );
 include_once ( 'Body.class.php' );
-//include_once ( 'CarModel.class.php' );
 include_once ( 'Datenbank.class.php' );
-//include_once ( 'Dimensions.class.php' );
-//include_once ( 'EuroCarSegment.class.php' );
 include_once ( 'FilterArray.class.php' );
 include_once ( 'Formular.class.php' );
-//include_once ( 'OEMbrand.class.php' );
-//include_once ( 'Process.class.php' );
-//include_once ( 'Weights.class.php' );
 
 function __autoload($class) {
-    include_once $class. '.class.php';
-    }
+	include_once $class . '.class.php';
+}
 
 class Karosserie extends Body {
 	function __construct() {
