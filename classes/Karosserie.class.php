@@ -48,6 +48,7 @@ class Karosserie extends Body {
 		 * die von Array1 ($wantedValues) auch in Array2 ($objectValues) vorkommen.
 		 */
 		$restArray            = array_intersect( $wantedValues, $objectValues );
+
 		/**
 		 * Ruft die Methode auf, die $wantedValues gegebenenfalls dezimiert
 		 */
