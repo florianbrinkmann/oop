@@ -58,6 +58,9 @@ class Karosserie extends Body {
 		 */
 		$db     = new Datenbank();
 		$result = $db->select();
+		if ( empty( $result ) ) {
+			return;
+		}
 		/**
 		 * Filtert das Ergebnis nach dem Wert aus $restArray. $values ist jetzt im Fall des Aufrufes aus der index.php
 		 *  Array ( [karosserie0] => Array ( [modelYear] => 2014 ) )
