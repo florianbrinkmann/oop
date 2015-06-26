@@ -153,8 +153,3 @@ class Karosserie extends Body {
 		return $ordered + $array;
 	}
 }
-
-/*
-Die getValues-Funktion holt alle Werte, die auf die $_POST-Parameter passen. Anschließend werden von View (bspw der
-index.php) die anderen Klassen der Daten aufgerufen, die dann die übergebenen Parameter aus „ihren“ Daten rausfiltern
-*/

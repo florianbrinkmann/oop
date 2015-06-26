@@ -1,4 +1,10 @@
 <?php
+
+/**
+ * Class Body
+ *
+ * Nur für die Vererbung zuständig
+ */
 class Body {
 	protected $objectValues;
 
