@@ -17,13 +17,14 @@ class Karosserie extends Body {
 		new OEMbrand();
 		new Process();
 		new Weights();
+        new materialMix(); // Jan Test
 	}
 
 	/**
 	 * Setzt die Karosserie-Werte, die zu der Klasse gehören. Wird aus der index.php aufgerufen
 	 */
 	function setObjectValues() {
-		$this->objectValues = [ 'id', 'modelYear', 'brandID', 'modelID', 'shortEuroCarSegment' ];
+		$this->objectValues = [ 'id_auto', 'modell_jahr', 'id_hersteller', 'id_modell', 'auto_segment_kurz' ];
 	}
 
 	/**
@@ -33,7 +34,7 @@ class Karosserie extends Body {
 	 *
 	 * @return array|FilterArray
 	 */
-	function getValues( $wantedValues ) {
+	function getValues( $wantedValues, $view ) {
 		/**
 		 * Speicherung der gesuchten Werte als „Backup“, brauchen wir nachher für die Sortierung.
 		 * Die Variable $wantedValues wird ja immer weiter dezimiert, bis nichts mehr übrig bleibt
@@ -57,7 +58,7 @@ class Karosserie extends Body {
 		 * Baut eine Datenbank-Verbindung auf und holt sich die Einträge
 		 */
 		$db     = new Datenbank();
-		$result = $db->select();
+		$result = $db->select( $view );
 		if ( empty( $result ) ) {
 			return;
 		}
@@ -70,7 +71,7 @@ class Karosserie extends Body {
 		/**
 		 * Speicherung der Klassennamen in einem Array, damit wir diese mit einer foreach-Schleife durchlaufen können
 		 */
-		$classes = [ 'CarModel', 'OEMbrand', 'EuroCarSegment', 'Dimensions', 'Weights', 'Process' ];
+		$classes = [ 'CarModel', 'OEMbrand', 'EuroCarSegment', 'Dimensions', 'Weights', 'Process', 'materialMix']; // Jan Test
 		foreach ( $classes as $class ) {
 			/**
 			 * Prüft, ob noch Werte gefunden werden müssen
@@ -96,7 +97,7 @@ class Karosserie extends Body {
 					/**
 					 * Holt sich die Werte zurück.
 					 */
-					$class        = $class->getValues( $wantedValues, $restArray );
+					$class        = $class->getValues( $wantedValues, $restArray, $view );
 					/**
 					 * Speichert einen Teil des Arrays mit dem Schlüssen „values“
 					 */

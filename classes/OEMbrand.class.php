@@ -1,1 +1,7 @@
-<?phpclass OEMbrand extends Body {	function setObjectValues() {		$this->objectValues = [ 'oemBrand' ];	}}
+<?php
+class OEMbrand extends Body {
+	function setObjectValues() {
+		$this->objectValues = [ 'hersteller' ];
+
+	}
+}

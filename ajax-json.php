@@ -9,6 +9,11 @@ $karosserieJson   = new Karosserie();
  */
 $wantedValuesJson = explode( ',', $_POST['wantedValues'] );
 $karosserieJson->setObjectValues();
-$karosserienJson = $karosserieJson->getValues( $wantedValuesJson );
+$arrayKeys = array_keys  ( $_POST );
+if ( count( array_filter( $arrayKeys ) ) > 4 ) {
+	$karosserienJson = $karosserieJson->getValues( $wantedValuesJson, 'details' );
+} else {
+	$karosserienJson = $karosserieJson->getValues( $wantedValuesJson, 'normal' );
+}
 $displayJson     = new Anzeige();
 $displayJson->typeaheadUpdate( $karosserienJson, $wantedValuesJson );
