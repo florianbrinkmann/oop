@@ -1,8 +1,6 @@
 <?php
 include_once ( 'Anzeige.class.php' );
 include_once ( 'Body.class.php' );
-include_once ( 'Datenbank.class.php' );
-include_once ( 'FilterArray.class.php' );
 include_once ( 'Formular.class.php' );
 
 function __autoload($class) {

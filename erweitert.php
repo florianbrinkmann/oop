@@ -321,7 +321,7 @@ $formular->form( 'post', 'erweitert.php', $inputArgs, 'Suchen' ); ?>
 		$karosserieJson   = new Karosserie();
 		$karosserieJson->setObjectValues();
 		$wantedValuesJson = [ 'hersteller', 'automodell', 'modell_jahr' ];
-		$karosserienJson = $karosserieJson->getValues( $wantedValuesJson, 'detail' );
+		$karosserienJson = $karosserieJson->getValues( $wantedValuesJson, 'details' );
 		$displayJson     = new Anzeige();
 		$displayJson->typeahead( $wantedValuesJson );
 		?>
