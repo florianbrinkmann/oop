@@ -15,7 +15,7 @@ class Karosserie extends Body {
 		new OEMbrand();
 		new Process();
 		new Weights();
-        new materialMix(); // Jan Test
+        new materialMix();
 	}
 
 	/**
@@ -69,7 +69,7 @@ class Karosserie extends Body {
 		/**
 		 * Speicherung der Klassennamen in einem Array, damit wir diese mit einer foreach-Schleife durchlaufen können
 		 */
-		$classes = [ 'CarModel', 'OEMbrand', 'EuroCarSegment', 'Dimensions', 'Weights', 'Process', 'materialMix']; // Jan Test
+		$classes = [ 'CarModel', 'OEMbrand', 'EuroCarSegment', 'Dimensions', 'Weights', 'Process', 'MaterialMix']; // Jan Test
 		foreach ( $classes as $class ) {
 			/**
 			 * Prüft, ob noch Werte gefunden werden müssen
