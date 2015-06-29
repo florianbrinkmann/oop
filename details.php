@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="css/style.css">
@@ -8,9 +9,8 @@
 require_once ( 'classes/Karosserie.class.php' );
 
 if ( isset( $_POST ) && ! empty( $_POST ) ) {
-	$karosserie   = new Karosserie();
 	$wantedValues = [
-        'hersteller',
+		'hersteller',
 		'automodell',
 		'modell_jahr',
 		'auto_segment',
@@ -23,15 +23,15 @@ if ( isset( $_POST ) && ! empty( $_POST ) ) {
 		'radstand',
 		'reifenkontaktflaeche',
 		'vordertueren_gewicht',
-		'hinertueren_gewicht',
+		'hintertueren_gewicht',
 		'motorhaube_gewicht',
 		'heckklappe_gewicht',
-        'frontkotfluegel_gewicht ',
+		'frontkotfluegel_gewicht',
 		'scharniere_gewicht',
 		'tankklappe_gewicht',
 		'frontpartie_gewicht',
 		'gesamtgewicht',
-		'process',
+		'prozess',
 		're_tooling',
 		'grad_der_mechanisierung',
 		'geplantes_produktionsvolumen',
@@ -40,14 +40,15 @@ if ( isset( $_POST ) && ! empty( $_POST ) ) {
 		'komplette_anzahl_der_teile',
 		'anzahl_der_teile_die_leichter_als_100_gramm',
 		'anzahl_der_teile_von_100_gramm_bis_zu_1_kilogramm',
-		'anzahl_der_teile_von_1_kilogramm_bis_zu_5_kilogram',
+		'anzahl_der_teile_von_1_kilogramm_bis_zu_5_kilogramm',
 		'anzahl_der_teile_ueber_5_kilogramm',
-        'stahl',
-        'aluminium',
-        'magnesium',
-        'plastic',
-        'anderematerialien'
+		'stahl',
+		'aluminium',
+		'magnesium',
+		'plastic',
+		'anderematerialien'
 	];
+	$karosserie   = new Karosserie();
 	$karosserie->setObjectValues();
 	$karosserien = $karosserie->getValues( $wantedValues, 'details' );
 	$display      = new Anzeige();

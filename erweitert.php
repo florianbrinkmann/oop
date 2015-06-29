@@ -107,7 +107,7 @@ $inputArgs = [
 	],
 	[
 		'label' => 'Gewicht Hintertüren in Kilogramm',
-		'id' => 'hinertueren_gewicht',
+		'id' => 'hintertueren_gewicht',
 		'type' => 'text',
 		'placeholder' => '',
 		'value' => '',
@@ -252,12 +252,10 @@ $formular = new Formular();
 
 $formular->form( 'post', 'erweitert.php', $inputArgs, 'Suchen' ); ?>
 
-<noscript>
-	<?php include( 'get-result.php' ); ?>
-</noscript>
-
 <div id="result">
-
+	<noscript>
+		<?php include( 'get-result.php' ); ?>
+	</noscript>
 </div>
 <script>
 

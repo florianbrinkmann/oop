@@ -90,8 +90,6 @@ $formular->form( 'post', 'index.php', $inputArgs, 'Suchen' );
 					$("#result").html(data);
 				}
 			});
-
-			return false;
 		};
 
 		/**
@@ -114,16 +112,7 @@ $formular->form( 'post', 'index.php', $inputArgs, 'Suchen' );
 		 * Holt die Ergebnisse, wenn das Formular abgeschickt wird
 		 */
 		$(form).submit(function () {
-			var url = "get-result.php";
-			$.ajax({
-				type: "POST",
-				url: url,
-				data: $(form).serialize(),
-				success: function (data) {
-					$("#result").html(data);
-				}
-			});
-
+			getData();
 			return false;
 		});
 	})
