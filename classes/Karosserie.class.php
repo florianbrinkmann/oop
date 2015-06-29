@@ -140,7 +140,7 @@ class Karosserie extends Body {
 		return $wantedValues;
 	}
 
-	function sortArrayByArray( Array $array, $originalWantedValues ) {
+	function sortArrayByArray( $array, $originalWantedValues ) {
 		$ordered = array();
 		foreach ( $originalWantedValues as $key ) {
 			if ( array_key_exists( $key, $array ) ) {
@@ -148,7 +148,6 @@ class Karosserie extends Body {
 				unset( $array[ $key ] );
 			}
 		}
-
-		return $ordered + $array;
+		return $ordered;
 	}
 }
