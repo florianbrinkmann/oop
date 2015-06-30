@@ -85,6 +85,9 @@ class Datenbank {
 		$query  = "SELECT * FROM $view $where";
 		$stmt   = $dbh->query( $query );
 		$result = $stmt->fetchAll();
+		$user = User::get();
+		$result = $user->filterList( $result );
+
 
 		return $result;
 	}

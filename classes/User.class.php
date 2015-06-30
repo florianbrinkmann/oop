@@ -3,25 +3,25 @@
 class User /* extends DBOObject */ {
 
 	// das einzige erlaubte User-Objekt ("Singleton")
-private static userSingleton = null;
+private static $userSingleton = null;
 
 	// die Eigenschaften des User-Objekts
-private userName;
-private userID;
-private roles;
+private $userName;
+private $userID;
+private $roles;
 
 	// eine Methode, um das Singleton zurückzugeben
 	public static function get() {
-		if (empty(self::userSingleton)) {
-			if (isset($_SERVER['PHP_AUTH_USER']) {$userName = $_SERVER['PHP_AUTH_USER'];}   // der Username, mit dem der Benutzer ggf. angemeldet ist
+		if (empty(self::$userSingleton)) {
+			if (isset($_SERVER['PHP_AUTH_USER']) ) {$userName = $_SERVER['PHP_AUTH_USER'];}   // der Username, mit dem der Benutzer ggf. angemeldet ist
 			// hier ggf. eine Exception, wenn Anmeldung Pflicht ist:
 			// throw new OutOfBoundsException('kein Benutzername gefunden');
 			else                                 {$userName = "unknownUser";}
 
 			// verwenden des privaten Konstruktors, um das Singleton zu erzeugen
-			self::userSingleton = new User($userName);
+			self::$userSingleton = new User($userName);
 		}
-		return self::userSingleton;
+		return self::$userSingleton;
 	}
 
 	// die Methode, die prüft, ob der Benutzer Zugriff auf ein Array von Karossserien (oder eine einzelne Karosserie) hat
