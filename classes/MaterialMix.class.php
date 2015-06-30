@@ -1,5 +1,5 @@
 <?php
-class materialMix extends Body {
+class MaterialMix extends Body {
 	function setObjectValues() {
 		$this->objectValues = [
             'stahl',
